@@ -1,7 +1,3 @@
-<<<<<<< HEAD
 requests
 beautifulsoup4
-=======
-requests
-beautifulsoup4
->>>>>>> 23ac95e (Updated the version to the)
+

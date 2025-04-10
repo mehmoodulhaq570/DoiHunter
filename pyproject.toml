@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 # pyproject.toml
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
-=======
-# pyproject.toml
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
->>>>>>> 23ac95e (Updated the version to the)
+

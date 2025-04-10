@@ -1,7 +1,3 @@
-<<<<<<< HEAD
 10.1002/er.6529g
 AI Ethics: Balancing Innovation with Privacy and Security in the Digital Age
-=======
-10.1002/er.6529g
-AI Ethics: Balancing Innovation with Privacy and Security in the Digital Age
->>>>>>> 23ac95e (Updated the version to the)
+

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-__version__= "1.0"
+__version__= "0.1.1"
+__author__ = "Mehmood Ul Haq"
 
-=======
-__version__= "1.0"
-
->>>>>>> 23ac95e (Updated the version to the)
