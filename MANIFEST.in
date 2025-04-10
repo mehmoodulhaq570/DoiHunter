@@ -1,4 +1,13 @@
-# MANIFEST.in
-include paper_titles.txt
-include failed_downloads.txt
+# Include the README and LICENSE files
+include README.md
+include LICENSE
 
+# Include all *.txt and *.csv files if any exist
+recursive-include doi_hunter *.txt
+recursive-include doi_hunter *.csv
+
+# Include any additional non-code files (e.g., templates, configs)
+recursive-include doi_hunter_package/data *
+
+# Include all package data specified in setup.py
+global-include *.py

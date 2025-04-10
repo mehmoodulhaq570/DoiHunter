@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-0.1.1-blue)](https://github.com/mehmoodulhaq570/doi_hunter)
+[![Version](https://img.shields.io/badge/version-0.1.2-blue)](https://github.com/mehmoodulhaq570/doi_hunter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Issues](https://img.shields.io/github/issues/mehmoodulhaq570/doi_hunter)](https://github.com/mehmoodulhaq570/doi_hunter/issues)
 [![Size](https://img.shields.io/github/repo-size/mehmoodulhaq570/doi_hunter.svg)](https://github.com/mehmooulhaq570/doi_hunter)

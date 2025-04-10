@@ -4,6 +4,7 @@ README.md
 failed_downloads.txt
 paper_titles.txt
 pyproject.toml
+requirements.txt
 setup.py
 doi_hunter/__init__.py
 doi_hunter/__main__.py
