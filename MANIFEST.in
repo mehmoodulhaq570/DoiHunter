@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 # MANIFEST.in
 include paper_titles.txt
 include failed_downloads.txt
+=======
+# MANIFEST.in
+include paper_titles.txt
+include failed_downloads.txt
+>>>>>>> 23ac95e (Updated the version to the)
