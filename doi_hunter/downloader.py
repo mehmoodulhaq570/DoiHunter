@@ -81,9 +81,18 @@ def process_papers(file_path, batch_size):
     failed_file = "failed_downloads.txt"
 
     try:
-        with open(file_path, 'r') as file:
-            lines = [line.strip() for line in file if line.strip()]  # Remove empty lines and whitespace
-            total_count = len(lines)
+        encodings_to_try = ['utf-8', 'utf-8-sig', 'latin-1', 'cp1252']
+
+        for enc in encodings_to_try:
+            try:
+                with open(file_path, 'r', encoding=enc) as file:
+                    lines = [line.strip() for line in file if line.strip()]  # Remove empty lines and whitespace
+                    total_count = len(lines)
+                break  # Exit loop if successful
+            except UnicodeDecodeError:
+                continue
+        else:
+            raise UnicodeDecodeError("All attempted encodings failed to decode the file.")
 
         # Process in batches
         for i in range(0, total_count, batch_size):
