@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-0.1.2-blue)](https://github.com/mehmoodulhaq570/doi_hunter)
+[![Version](https://img.shields.io/badge/version-1.1.1-blue)](https://github.com/mehmoodulhaq570/doi_hunter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Issues](https://img.shields.io/github/issues/mehmoodulhaq570/doi_hunter)](https://github.com/mehmoodulhaq570/doi_hunter/issues)
 [![Size](https://img.shields.io/github/repo-size/mehmoodulhaq570/doi_hunter.svg)](https://github.com/mehmooulhaq570/doi_hunter)
@@ -27,22 +27,27 @@ pip install doi_hunter
 ## Setup & Usage
 
 ### Step 1: Create a Directory and Paper Title List
+
 - Create a directory with any name.
 - Inside that directory, create a .txt file  form example paper_titles.txt.
 - This file should contain a list of paper titles or DOIs, each on a new line.
 
 **Example content for paper_titles.txt:**
+
 - AI Ethics: Balancing Innovation with Privacy and Security in the Digital Age
 - 10.1002/er.6529
 - Prediction of daily global solar radiation using different machine learning algorithms: Evaluation and comparison
 
 ### Step 2: Run the Downloader
+
 Navigate to your created directory, then run the following command:
 
 ```bash
 python -m doi_hunter paper_titles.txt --batch_size=5
 ````
+
 ## Output
+
 Once the download starts, you'll see the following output:
 
 ```bash
@@ -63,13 +68,16 @@ Total successfully downloaded: 1
 Total skipped files: 1
 Total failed downloads: 0
 ````
+
 **Summary of Logs**
 At the end of the process, a summary is displayed showing the total number of papers processed, successfully downloaded, skipped (if they already exist), and failed downloads.
 
 ## Notes
+
 The ```--batch_size``` option allows you to control how many papers are processed at once, useful for large datasets.
 The doi of the research paper must start like this **10.1016/j.rser.2016.05.022**
 Failed downloads are logged and can be retried later.
 
 ## Contributors
+
 - [@Faisal-PCB](https://github.com/Faisal-PCB)

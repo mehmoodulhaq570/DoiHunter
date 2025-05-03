@@ -1,5 +1,28 @@
-# pyproject.toml
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "doi-hunter"
+version = "1.1.1"
+description = "DOI-based paper downloader via Sci-Hub"
+authors = [
+    { name = "Mehmood Ul Haq", email = "mehmoodulhaq1040@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.7"
+license = { text = "MIT" }
+dependencies = [
+    "requests>=2.25.1",
+    "beautifulsoup4>=4.9.3"
+]
+keywords = ["doi", "scihub", "research", "papers", "downloader"]
+
+[project.urls]
+Homepage = "https://github.com/mehmoodulhaq570/DoiHunter"
+Documentation = "https://github.com/mehmoodulhaq570/DoiHunter#readme"
+Source = "https://github.com/mehmoodulhaq570/DoiHunter"
+BugTracker = "https://github.com/mehmoodulhaq570/DoiHunter/issues"
+
+[project.scripts]
+doi-hunter = "doi_hunter.__main__:main"

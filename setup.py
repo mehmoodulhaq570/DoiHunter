@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="doi_hunter",  # Name of the package
-    version="0.1.3",  # Version of the package
+    version="1.1.1",  # Version of the package
     author="Mehmood Ul Haq",  # Author name
     author_email="mehmoodulhaq1040@gmail.com",  # Author email
     description="A Python tool for downloading scientific papers using Crossref and SciHub",  # Short description

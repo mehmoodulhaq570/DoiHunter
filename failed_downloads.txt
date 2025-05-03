@@ -1,3 +1,4 @@
-10.1002/er.6529g
-AI Ethics: Balancing Innovation with Privacy and Security in the Digital Age
-
+A review on the forecasting of wind speed and generated power
+Wind speed estimation using multilayer perceptron
+Wind speed and generated power forecasting in wind farm
+Forecasting wind speed with recurrent neural networks
