@@ -18,6 +18,11 @@ def get_scihub_original_url(doi, title, download_folder):
             html_content = response.text
             file_name = extract_title(html_content) or title
             original_url = extract_scihub_embed_link(html_content)
+
+            # Fix for malformed URLs starting with '//'
+            if original_url and original_url.startswith("//"):
+                original_url = "https:" + original_url
+
             if original_url:
                 return download_file(original_url, file_name, download_folder)
         elif response.status_code == 429:
@@ -28,6 +33,7 @@ def get_scihub_original_url(doi, title, download_folder):
         print(f"[x] An error occurred while accessing Sci-Hub: {e}")
     print("[x] Failed to download file :(")
     return False
+    
 
 
 def process_papers_in_batch(batch, failed_downloads, skipped_files, download_folder):
@@ -117,3 +123,9 @@ def process_papers(file_path, batch_size):
     print(f"Total skipped files: {len(skipped_files)}")
     print(f"Total failed downloads: {len(set(failed_downloads))}")
     log_failed_downloads(failed_downloads, failed_file)
+    if os.path.exists(failed_file):
+        print(f"\nFailed downloads have been logged in '{failed_file}':")
+        #with open(failed_file, 'r') as file:
+            # print(file.read())
+    #print(f"\n[INFO] Download process completed in {time.time() - start_time:.2f} seconds.")
+    print("[INFO] Thank you for using DoiHunter!")
