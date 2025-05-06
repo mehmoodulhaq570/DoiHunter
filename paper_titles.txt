@@ -1,3 +1,3 @@
-Wind Energy in Europe–2020 Statistics and the Outlook for 2021–2025
-Review on Monitoring, Operation and Maintenance of Smart Offshore Wind Farms
-A Wind Speed Correction Method Based on Modified Hidden Markov Model for Enhancing Wind Power Forecast
+Clustered hybrid wind power prediction model based on ARMA, PSO-SVM, and clustering methods
+
+Wind power forecasting based on hourly wind speed data in South Korea using machine learning algorithms

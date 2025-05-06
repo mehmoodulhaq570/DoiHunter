@@ -94,11 +94,15 @@ def process_papers(file_path, batch_size):
                 with open(file_path, 'r', encoding=enc) as file:
                     lines = [line.strip() for line in file if line.strip()]  # Remove empty lines and whitespace
                     total_count = len(lines)
+                print(f"[INFO] Successfully read file using encoding: {enc}")
                 break  # Exit loop if successful
             except UnicodeDecodeError:
                 continue
+            except Exception as e:
+                print(f"[WARNING] Failed with encoding {enc}: {e}")
+                continue
         else:
-            raise UnicodeDecodeError("All attempted encodings failed to decode the file.")
+            raise UnicodeDecodeError("utf-8", b"", 0, 1, "All attempted encodings failed to decode the file.")
 
         # Process in batches
         for i in range(0, total_count, batch_size):
@@ -108,14 +112,25 @@ def process_papers(file_path, batch_size):
     except Exception as e:
         logging.error(f"An error occurred during processing: {e}")
         print(f"[x] An error occurred during processing: {e}")
-        # Log failed downloads even if an exception occurs
-        log_failed_downloads(failed_downloads, failed_file)
-        # Print the content of failed_downloads.txt
-        if os.path.exists(failed_file):
-            print(f"\nFailed downloads have been logged in '{failed_file}':")
-            with open(failed_file, 'r') as file:
-                print(file.read())
-        return
+
+    finally:
+        # Log failed downloads, always
+        if failed_downloads:
+            try:
+                with open(failed_file, "w", encoding="utf-8") as file:
+                    for failed in failed_downloads:
+                        file.write(f"{failed}\n")
+                print(f"\n[!] Failed downloads have been logged in '{failed_file}'.")
+            except Exception as log_err:
+                print(f"[x] Error writing failed downloads file: {log_err}")
+
+            # Print the failed download content
+            try:
+                with open(failed_file, 'r', encoding='utf-8') as file:
+                    print(file.read())
+            except Exception as read_err:
+                print(f"[x] Error reading failed downloads file: {read_err}")
+    
 
     print("\n[SUMMARY]")
     print(f"Total papers in file: {total_count}")
