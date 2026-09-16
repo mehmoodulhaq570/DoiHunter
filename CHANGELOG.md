@@ -5,7 +5,7 @@ All notable changes to DOI Hunter are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and released versions follow [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [Released]
 
 ## [1.2.0] - 2026-09-16
 
