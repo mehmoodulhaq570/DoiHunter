@@ -3,10 +3,11 @@ __pycache__/
 *.pyo
 *.pyd
 *.log
+*.part
+.coverage
+.pytest_cache/
 env/
 venv/
 *.egg-info/
 dist/
-build/
-doi_hunter.egg-info/
 build/

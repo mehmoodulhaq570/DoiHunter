@@ -11,22 +11,36 @@ and released versions follow [Semantic Versioning](https://semver.org/).
 
 - Restored the missing `doi_hunter.utils` module required by the CLI.
 - Added DOI publisher-page resolution and `citation_pdf_url` extraction.
-- Added an official publisher PDF attempt before the legacy fallback.
-- Added request timeouts for DOI lookup and PDF downloads.
+- Added discovery through publisher metadata, Unpaywall, OpenAlex, Europe PMC,
+  and arXiv before the legacy fallback.
+- Added persistent sessions, configurable retries, request timeouts, backoff,
+  temporary downloads, and atomic file replacement.
+- Added `%PDF-` signature validation to reject HTML and other invalid content.
+- Added CLI options for output directory, retries, timeout, title threshold,
+  Unpaywall email, and disabling the legacy fallback.
+- Added source-specific failure reasons and overall progress numbering.
+- Simplified the default final summary and added `--verbose` for repeating all
+  failure reasons at the end of a run.
+- Added graceful Ctrl+C handling with session shutdown, partial-file cleanup,
+  a final summary, and a clear stopped-by-user message.
 - Added automated tests for downloads, existing-file detection, Crossref
   parameters, citation metadata, relative PDF URLs, and failure logging.
 - Added ten sample research-paper titles to `paper_titles.txt`.
 
 ### Changed
 
-- Crossref searches now pass titles as encoded request parameters and request
-  only the first result.
+- Title searches now combine Crossref, OpenAlex, and arXiv candidates, account
+  for word order and exact-title collisions, and reject matches below a
+  configurable similarity threshold.
 - Relative PDF links are now resolved consistently, including `/uptodate/`
   paths and protocol-relative URLs.
 - PDF filenames are sanitized and no longer gain a second `.pdf` suffix when a
   rate-limited request is retried.
 - Duplicate failures retain their original order when written to disk.
 - A successful run now clears stale entries from `failed_downloads.txt`.
+- Consolidated package metadata in `setup.cfg`, corrected the misspelled
+  configuration filename, synchronized the package version, and removed
+  tracked bytecode caches.
 - README instructions now describe source installation, CLI usage, output,
   download order, limitations, and test execution.
 

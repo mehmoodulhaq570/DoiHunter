@@ -1,8 +1,0 @@
-Attention Is All You Need
-BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
-Deep Residual Learning for Image Recognition
-Adam: A Method for Stochastic Optimization
-Generative Adversarial Nets
-U-Net: Convolutional Networks for Biomedical Image Segmentation
-Random Forests
-Support-Vector Networks

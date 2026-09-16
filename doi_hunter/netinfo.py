@@ -1,6 +1,5 @@
 # paper_downloader/net_info.py
 import random
-import time
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
@@ -12,17 +11,6 @@ USER_AGENTS = [
 
 def get_headers():
     return {
-        'User-Agent': random.choice(USER_AGENTS)
+        "User-Agent": random.choice(USER_AGENTS),
+        "Accept": "text/html,application/pdf,application/json;q=0.9,*/*;q=0.8",
     }
-
-
-def waithIPchange():
-    while True:
-        inp = input('You have been blocked, try changing your IP or using a VPN. '
-                    'Press Enter to continue downloading, or type "exit" to stop and exit: ')
-        if inp.strip().lower() == "exit":
-            return False
-        elif not inp.strip():
-            print("Wait 30 seconds...")
-            time.sleep(30)
-            return True
