@@ -11,3 +11,5 @@ venv/
 *.egg-info/
 dist/
 build/
+downloads/
+failed_downloads.txt

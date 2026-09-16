@@ -9,6 +9,16 @@ and released versions follow [Semantic Versioning](https://semver.org/).
 
 ## [1.2.0] - 2026-09-16
 
+### Changed
+
+- Moved the sample title list to `examples/paper_titles.txt`.
+- Centralized the package version in `doi_hunter.__version__`.
+- Raised the supported Python version to 3.10 and added CI coverage through
+  Python 3.14.
+- Replaced the inactive Travis configuration with GitHub Actions.
+- Updated the security reporting policy and removed generated/runtime files
+  from version control.
+
 ### Added
 
 - Restored the missing `doi_hunter.utils` module required by the CLI.
@@ -27,7 +37,7 @@ and released versions follow [Semantic Versioning](https://semver.org/).
   a final summary, and a clear stopped-by-user message.
 - Added automated tests for downloads, existing-file detection, Crossref
   parameters, citation metadata, relative PDF URLs, and failure logging.
-- Added ten sample research-paper titles to `paper_titles.txt`.
+- Added ten sample research-paper titles to `examples/paper_titles.txt`.
 
 ### Changed
 

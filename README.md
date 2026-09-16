@@ -1,6 +1,8 @@
-[![Version](https://img.shields.io/badge/version-1.2.0-blue)](https://github.com/mehmoodulhaq570/doi_hunter)
+[![Tests](https://github.com/mehmoodulhaq570/DoiHunter/actions/workflows/tests.yml/badge.svg)](https://github.com/mehmoodulhaq570/DoiHunter/actions/workflows/tests.yml)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue)](https://github.com/mehmoodulhaq570/DoiHunter)
+[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Issues](https://img.shields.io/github/issues/mehmoodulhaq570/doi_hunter)](https://github.com/mehmoodulhaq570/doi_hunter/issues)
+[![Issues](https://img.shields.io/github/issues/mehmoodulhaq570/DoiHunter)](https://github.com/mehmoodulhaq570/DoiHunter/issues)
 
 # DOI Hunter
 
@@ -9,6 +11,17 @@ titles and DOIs and attempts to download their PDFs. Paper titles are resolved
 to DOIs through Crossref, and downloaded files are stored with readable names.
 
 Use the tool only for papers you are legally permitted to access and download.
+
+## Quick start
+
+```powershell
+python -m pip install doi_hunter
+doi-hunter papers.txt --batch-size 5
+```
+
+Create `papers.txt` with one DOI or paper title per line. PDFs are written to
+`downloads/`, and entries that could not be downloaded are recorded in
+`failed_downloads.txt`.
 
 ## Features
 
@@ -32,7 +45,7 @@ Use the tool only for papers you are legally permitted to access and download.
 
 ## Requirements
 
-- Python 3.7 or newer
+- Python 3.10 or newer
 - `requests`
 - `beautifulsoup4`
 
@@ -48,7 +61,7 @@ To run the current source checkout instead:
 
 ```powershell
 cd D:\Projects\DoiHunter
-python -m pip install -r requirements.txt
+python -m pip install -e .
 ```
 
 ## Input file
@@ -65,20 +78,20 @@ Attention Is All You Need
 Long Short-Term Memory
 ```
 
-The included `paper_titles.txt` contains ten sample titles.
+The included `examples/paper_titles.txt` contains ten sample titles.
 
 ## Usage
 
 From the repository directory, run:
 
 ```powershell
-python -m doi_hunter paper_titles.txt --batch-size 5
+python -m doi_hunter examples/paper_titles.txt --batch-size 5
 ```
 
 If the package has been installed, the console command is also available:
 
 ```powershell
-doi-hunter paper_titles.txt --batch-size 5
+doi-hunter examples/paper_titles.txt --batch-size 5
 ```
 
 The older `--batch_size` spelling remains available for compatibility. Batches
@@ -101,7 +114,7 @@ Unpaywall requires an email address. Supply it with `--email` or set the
 
 ```powershell
 $env:DOI_HUNTER_EMAIL = "researcher@example.com"
-python -m doi_hunter paper_titles.txt --output downloads --retries 3
+python -m doi_hunter examples/paper_titles.txt --output downloads --retries 3
 ```
 
 ## Download process
@@ -147,13 +160,48 @@ ends with the failed-download log location and a completion message.
 
 ## Development and tests
 
-Run the test suite without making network requests:
+Install the source checkout with development tools:
+
+```powershell
+git clone https://github.com/mehmoodulhaq570/DoiHunter.git
+cd DoiHunter
+python -m pip install -e ".[dev]"
+```
+
+Run the test suite without making live network requests:
 
 ```powershell
 python -m unittest discover -s tests -v
 ```
 
+The [GitHub Actions workflow](.github/workflows/tests.yml) runs the same tests
+on Python 3.10 through 3.14 for every push and pull request. On Python 3.14 it
+also builds and validates the wheel and source archive. CI does not publish a
+package or download research papers.
+
+## Repository layout
+
+```text
+DoiHunter/
+├── .github/workflows/tests.yml   Automated tests and package validation
+├── doi_hunter/                   Application source code
+├── examples/paper_titles.txt     Sample input list
+├── tests/                        Offline automated tests
+├── CHANGELOG.md                  Release history
+├── README.md                     Usage and development documentation
+├── SECURITY.md                   Private vulnerability-reporting process
+├── pyproject.toml                Build-system configuration
+├── setup.cfg                     Package metadata and dependencies
+└── setup.py                      Compatibility build entry point
+```
+
+Generated build output, downloaded PDFs, caches, and runtime logs are excluded
+from version control.
+
 See [CHANGELOG.md](CHANGELOG.md) for notable changes.
+
+Security issues should be reported privately as described in
+[SECURITY.md](SECURITY.md).
 
 ## License
 
