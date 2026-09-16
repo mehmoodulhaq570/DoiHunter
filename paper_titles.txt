@@ -1,3 +1,10 @@
-Clustered hybrid wind power prediction model based on ARMA, PSO-SVM, and clustering methods
-
-Wind power forecasting based on hourly wind speed data in South Korea using machine learning algorithms
+Attention Is All You Need
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+Deep Residual Learning for Image Recognition
+Adam: A Method for Stochastic Optimization
+Generative Adversarial Nets
+ImageNet Classification with Deep Convolutional Neural Networks
+U-Net: Convolutional Networks for Biomedical Image Segmentation
+Random Forests
+Support-Vector Networks
+Long Short-Term Memory

@@ -1,82 +1,130 @@
 [![Version](https://img.shields.io/badge/version-1.1.1-blue)](https://github.com/mehmoodulhaq570/doi_hunter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Issues](https://img.shields.io/github/issues/mehmoodulhaq570/doi_hunter)](https://github.com/mehmoodulhaq570/doi_hunter/issues)
-[![Size](https://img.shields.io/github/repo-size/mehmoodulhaq570/doi_hunter.svg)](https://github.com/mehmooulhaq570/doi_hunter)
-[![Downloads](https://img.shields.io/github/downloads/mehmoodulhaq570/doi_hunter/total.svg)](https://github.com/mehmoodulhaq570/doi_hunter/releases)
 
-# DoiHunter
+# DOI Hunter
 
-**DoiHunter** is a Python package that can helps researchers download research papers using DOIs (unique identification of researcher paper) or paper titles through Crossref and Sci-Hub. Whether you're conducting research or need specific papers quickly, DoiHunter simplifies the process by automating downloads.
+DOI Hunter is a Python command-line tool that processes lists of research-paper
+titles and DOIs and attempts to download their PDFs. Paper titles are resolved
+to DOIs through Crossref, and downloaded files are stored with readable names.
+
+Use the tool only for papers you are legally permitted to access and download.
 
 ## Features
 
-- **Batch Download**: Download multiple research papers in one go using a list of DOIs or titles.
-- **Title to DOI**: Retrieves DOIs using paper titles through the CrossRef API and downloads the corresponding papers.
-- **Custom File Naming**: Automatically names files based on paper titles for easy identification.
-- **Error Handling**: Logs failed downloads and provides detailed summaries after processing.
+- Accepts paper titles and DOI identifiers in the same input file.
+- Resolves titles to DOIs through the Crossref API.
+- Checks DOI publisher pages for an officially advertised PDF.
+- Retains the project's legacy Sci-Hub lookup as a fallback.
+- Processes large input files in configurable batches.
+- Skips PDFs that already exist.
+- Sanitizes filenames for Windows and other supported platforms.
+- Records unsuccessful entries in `failed_downloads.txt`.
+- Supports UTF-8, UTF-8 with BOM, Latin-1, and CP1252 input files.
+- Applies network timeouts so unavailable services do not hang indefinitely.
+
+## Requirements
+
+- Python 3.7 or newer
+- `requests`
+- `beautifulsoup4`
 
 ## Installation
 
-1. First, ensure you have Python installed on your system.
-2. Install the `doi_hunter` package using pip:
+Install the published package:
 
-```bash
-pip install doi_hunter
-````
+```powershell
+python -m pip install doi_hunter
+```
 
-## Setup & Usage
+To run the current source checkout instead:
 
-### Step 1: Create a Directory and Paper Title List
+```powershell
+cd D:\Projects\DoiHunter
+python -m pip install -r requirements.txt
+```
 
-- Create a directory with any name.
-- Inside that directory, create a .txt file  form example paper_titles.txt.
-- This file should contain a list of paper titles or DOIs, each on a new line.
+## Input file
 
-**Example content for paper_titles.txt:**
+Create a text file containing one title or DOI per line. Blank lines are
+ignored. An entry beginning with `10.` is treated as a DOI; other entries are
+treated as titles.
 
-- AI Ethics: Balancing Innovation with Privacy and Security in the Digital Age
-- 10.1002/er.6529
-- Prediction of daily global solar radiation using different machine learning algorithms: Evaluation and comparison
+Example:
 
-### Step 2: Run the Downloader
+```text
+Attention Is All You Need
+10.1371/journal.pmed.0020124
+Long Short-Term Memory
+```
 
-Navigate to your created directory, then run the following command:
+The included `paper_titles.txt` contains ten sample titles.
 
-```bash
-python -m doi_hunter paper_titles.txt --batch_size=5
-````
+## Usage
+
+From the repository directory, run:
+
+```powershell
+python -m doi_hunter paper_titles.txt --batch_size 5
+```
+
+If the package has been installed, the console command is also available:
+
+```powershell
+doi-hunter paper_titles.txt --batch_size 5
+```
+
+`--batch_size` defaults to `10`. Batches are processed sequentially; this
+option does not enable parallel downloads.
+
+## Download process
+
+For each non-empty input line, DOI Hunter:
+
+1. Uses the value directly when it begins with `10.`; otherwise it requests the
+   first matching DOI from Crossref.
+2. Resolves the DOI and checks the publisher page for `citation_pdf_url`
+   metadata.
+3. Downloads an accessible publisher PDF when one is advertised.
+4. If that is unavailable, tries the legacy Sci-Hub HTML parsing path.
+5. Saves a successful download in the `downloads` directory.
+6. Records unsuccessful entries in `failed_downloads.txt`.
+
+Publisher downloads normally work only when the PDF is openly accessible or
+the current environment is already authorized to access it. External sites may
+be unavailable, blocked, or change their HTML without notice.
 
 ## Output
 
-Once the download starts, you'll see the following output:
+Downloaded papers are written to:
 
-```bash
-[INFO] Welcome to DoiHunter!
-This tool helps you download research papers from Sci-Hub using DOIs or titles.
-For more information and the source code, visit: https://github.com/mehmoodulhaq570
+```text
+downloads/
+```
 
-[INFO] Starting the download process...
+Failures are written to:
 
-Processing [1/3]: AI Ethics: Balancing Innovation with Privacy and Security in the Digital Age
-[v] File downloaded successfully :)
-Processing [2/3]: 10.1002/er.6529
-[v] File already exists. Skipping download.
+```text
+failed_downloads.txt
+```
 
-[SUMMARY]
-Total papers in file: 2
-Total successfully downloaded: 1
-Total skipped files: 1
-Total failed downloads: 0
-````
+The failure file is cleared after a run with no failures. Operational errors
+are written to `error.log`, and each run ends with counts for downloaded,
+skipped, and failed entries.
 
-**Summary of Logs**
-At the end of the process, a summary is displayed showing the total number of papers processed, successfully downloaded, skipped (if they already exist), and failed downloads.
+## Development and tests
 
-## Notes
+Run the test suite without making network requests:
 
-The ```--batch_size``` option allows you to control how many papers are processed at once, useful for large datasets.
-The doi of the research paper must start like this **10.1016/j.rser.2016.05.022**
-Failed downloads are logged and can be retried later.
+```powershell
+python -m unittest discover -s tests -v
+```
+
+See [CHANGELOG.md](CHANGELOG.md) for notable changes.
+
+## License
+
+DOI Hunter is distributed under the MIT License. See [LICENSE.txt](LICENSE.txt).
 
 ## Contributors
 

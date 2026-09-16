@@ -8,3 +8,5 @@ venv/
 *.egg-info/
 dist/
 build/
+doi_hunter.egg-info/
+build/
